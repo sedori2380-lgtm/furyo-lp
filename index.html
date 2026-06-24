@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kobucho — 仕入れ計算から古物台帳まで、これ1本で終わる。</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    font-family: 'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif;
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.6;
@@ -46,8 +47,8 @@
   }
   .btn-header {
     display: inline-block;
-    border: 1.5px solid #2563eb;
-    color: #2563eb;
+    border: 1.5px solid #4f46e5;
+    color: #4f46e5;
     background: white;
     padding: 8px 18px;
     border-radius: 6px;
@@ -57,7 +58,7 @@
     cursor: pointer;
   }
   .btn-header:hover {
-    background: #2563eb;
+    background: #4f46e5;
     color: white;
   }
 
@@ -65,6 +66,7 @@
   .hero {
     padding: 120px 20px 100px;
     text-align: center;
+    background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
   }
   .hero-inner {
     max-width: 720px;
@@ -73,7 +75,7 @@
   .hero-label {
     font-size: 12px;
     letter-spacing: 2px;
-    color: #2563eb;
+    color: #4f46e5;
     font-weight: 600;
     margin-bottom: 24px;
   }
@@ -92,7 +94,7 @@
   }
   .btn-cta {
     display: inline-block;
-    background: #2563eb;
+    background: #4f46e5;
     color: white;
     padding: 16px 40px;
     border-radius: 8px;
@@ -102,7 +104,7 @@
     transition: background .15s;
     cursor: pointer;
   }
-  .btn-cta:hover { background: #1d4ed8; }
+  .btn-cta:hover { background: #4338ca; }
   .hero-note {
     font-size: 12px;
     color: #9ca3af;
@@ -129,7 +131,7 @@
     padding: 20px 24px;
     background: white;
     border-radius: 8px;
-    border-left: 3px solid #e5e7eb;
+    border-left: 3px solid #4f46e5;
     margin-bottom: 12px;
     font-size: 15px;
     color: #1a1a1a;
@@ -154,6 +156,11 @@
     padding: 32px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
+  }
+  .feature-card:hover {
+    border-color: #4f46e5;
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.08);
+    transition: all 0.2s ease;
   }
   .feature-icon {
     font-size: 28px;
@@ -297,6 +304,7 @@
 <!-- FEATURES -->
 <section class="section-features">
   <div class="container">
+    <p style="font-size:11px;letter-spacing:2px;color:#4f46e5;font-weight:600;text-align:center;margin-bottom:12px;">FEATURES</p>
     <h2 class="section-title">できること</h2>
     <div class="feature-grid">
       <div class="feature-card">
@@ -326,6 +334,7 @@
 <!-- STRENGTHS -->
 <section class="section-strengths">
   <div class="container">
+    <p style="font-size:11px;letter-spacing:2px;color:#4f46e5;font-weight:600;text-align:center;margin-bottom:12px;">WHY KOBUCHO</p>
     <h2 class="section-title">選ばれる理由</h2>
     <div class="strength-list">
       <div class="strength-card">
