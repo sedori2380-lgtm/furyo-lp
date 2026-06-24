@@ -3,332 +3,362 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>furyo-tool — ブランド品せどりの管理を、これ1本に。</title>
+<title>kobucho — 仕入れ計算から古物台帳まで、これ1本で終わる。</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #0f0f0f;
-    --bg2: #1a1a1a;
-    --bg3: #222;
-    --accent: #f5a623;
-    --accent2: #e09420;
-    --text: #f0f0f0;
-    --text2: #999;
-    --border: #333;
-  }
-
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
-    line-height: 1.7;
+    font-family: -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
   }
 
-  a { color: inherit; text-decoration: none; }
+  a { text-decoration: none; color: inherit; }
 
   .container {
-    max-width: 680px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
   /* ── HEADER ── */
   header {
-    padding: 24px 0 0;
-    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .logo {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: .5px;
-    color: var(--accent);
-    margin-bottom: 20px;
+    color: #1a1a1a;
   }
-  .hero-catch {
-    font-size: clamp(24px, 6vw, 36px);
-    font-weight: 800;
-    line-height: 1.35;
-    margin-bottom: 14px;
-    letter-spacing: -.5px;
-  }
-  .hero-sub {
+  .btn-header {
+    display: inline-block;
+    border: 1.5px solid #2563eb;
+    color: #2563eb;
+    background: white;
+    padding: 8px 18px;
+    border-radius: 6px;
     font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 32px;
+    font-weight: 600;
+    transition: background .15s, color .15s;
+    cursor: pointer;
+  }
+  .btn-header:hover {
+    background: #2563eb;
+    color: white;
   }
 
-  /* ── CTA BUTTON ── */
-  .cta-wrap {
+  /* ── HERO ── */
+  .hero {
+    padding: 120px 20px 100px;
     text-align: center;
-    padding: 0 0 40px;
+  }
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.3;
+    color: #1a1a1a;
+    white-space: pre-line;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: #6b7280;
+    margin-top: 20px;
+    line-height: 1.8;
   }
   .btn-cta {
     display: inline-block;
-    background: var(--accent);
-    color: #000;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 16px 36px;
+    background: #2563eb;
+    color: white;
+    padding: 16px 40px;
     border-radius: 8px;
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 40px;
     transition: background .15s;
-    border: none;
-    text-decoration: none;
+    cursor: pointer;
   }
-  .btn-cta:hover { background: var(--accent2); }
-  .cta-note {
-    margin-top: 10px;
+  .btn-cta:hover { background: #1d4ed8; }
+  .hero-note {
     font-size: 12px;
-    color: var(--text2);
+    color: #9ca3af;
+    margin-top: 12px;
   }
 
-  /* ── SECTION ── */
-  section {
-    padding: 48px 0;
-    border-top: 1px solid var(--border);
-  }
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 16px;
+  /* ── PAIN ── */
+  .section-pain {
+    background: #f8f8f6;
+    padding: 80px 20px;
   }
   .section-title {
-    font-size: clamp(20px, 5vw, 26px);
-    font-weight: 800;
-    margin-bottom: 24px;
-    line-height: 1.4;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
   }
-
-  /* ── PAIN POINTS ── */
   .pain-list {
+    max-width: 560px;
+    margin: 0 auto;
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
   }
   .pain-list li {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 14px 16px;
-    border-radius: 6px;
+    padding: 20px 24px;
+    background: white;
+    border-radius: 8px;
+    border-left: 3px solid #e5e7eb;
+    margin-bottom: 12px;
     font-size: 15px;
-  }
-  .pain-list li::before {
-    content: '😓 ';
+    color: #1a1a1a;
   }
 
-  /* ── FEATURE CARDS ── */
-  .card-grid {
+  /* ── FEATURES ── */
+  .section-features {
+    background: #ffffff;
+    padding: 80px 20px;
+  }
+  .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 16px;
+    max-width: 800px;
+    margin: 48px auto 0;
   }
-  @media (max-width: 480px) {
-    .card-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    .feature-grid { grid-template-columns: 1fr; }
   }
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 16px;
+  .feature-card {
+    padding: 32px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
   }
-  .card-icon {
+  .feature-icon {
     font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
-  .card-name {
-    font-size: 14px;
+  .feature-name {
+    font-size: 16px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    color: #1a1a1a;
   }
-  .card-desc {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.6;
+  .feature-desc {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
   }
 
-  /* ── FEATURES LIST ── */
-  .feature-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  /* ── STRENGTHS ── */
+  .section-strengths {
+    background: #f8f8f6;
+    padding: 80px 20px;
   }
-  .feature-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
+  .strength-list {
+    max-width: 640px;
+    margin: 48px auto 0;
   }
-  .feature-list li::before {
-    content: '✓';
-    color: var(--accent);
+  .strength-card {
+    padding: 28px 32px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 12px;
+  }
+  .strength-name {
     font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 2px;
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+  .strength-desc {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 6px;
+    line-height: 1.7;
   }
 
   /* ── MONITOR CTA ── */
-  .monitor-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px 24px;
+  .section-monitor {
+    background: #1a1a1a;
+    padding: 80px 20px;
     text-align: center;
   }
-  .monitor-box .monitor-tag {
-    display: inline-block;
-    background: var(--accent);
-    color: #000;
+  .monitor-label {
     font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    color: #9ca3af;
   }
-  .monitor-box h3 {
-    font-size: 20px;
+  .monitor-title {
+    font-size: 32px;
     font-weight: 800;
-    margin-bottom: 12px;
-    line-height: 1.4;
+    color: white;
+    margin: 16px 0;
+    line-height: 1.3;
   }
-  .monitor-box p {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 24px;
-    line-height: 1.7;
-  }
-  .btn-x {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #fff;
-    color: #000;
+  .monitor-desc {
+    color: #9ca3af;
     font-size: 15px;
-    font-weight: 700;
-    padding: 14px 28px;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+  .btn-monitor {
+    display: inline-block;
+    background: white;
+    color: #1a1a1a;
+    padding: 16px 40px;
     border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
     transition: opacity .15s;
   }
-  .btn-x:hover { opacity: .85; }
+  .btn-monitor:hover { opacity: .85; }
 
   /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 0;
-    text-align: center;
-    font-size: 12px;
-    color: var(--text2);
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    padding: 32px 20px;
   }
-  footer a { color: var(--accent); }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-size: 13px;
+    color: #9ca3af;
+  }
+  .footer-x {
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .footer-x:hover { color: #1a1a1a; }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header>
-  <div class="container">
-    <div class="logo">🏷️ furyo-tool</div>
-    <h1 class="hero-catch">ブランド品せどりの管理を、<br>これ1本に。</h1>
-    <p class="hero-sub">仕入れ計算・古物台帳・在庫管理をローカルで完結</p>
+  <div class="header-inner">
+    <div class="logo">kobucho</div>
+    <a class="btn-header" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">モニターに応募する</a>
   </div>
 </header>
 
-<!-- CTA TOP -->
-<div class="cta-wrap">
-  <div class="container">
-    <a class="btn-cta" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">
-      モニター募集中 — 今だけ無料で使う
-    </a>
-    <p class="cta-note">先着5名限定 / 通常¥1,980/月</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-label">古物商向けせどり管理ツール</p>
+    <h1 class="hero-title">仕入れ計算から古物台帳まで、
+これ1本で終わる。</h1>
+    <p class="hero-sub">ローカルで動くから、データはあなたのPCの中だけ。古物台帳の記帳義務も、仕入れ登録と同時に自動で記録されます。</p>
+    <a class="btn-cta" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">モニターに応募する（先着5名・無料）</a>
+    <p class="hero-note">通常 ¥1,980/月 → モニター期間中は無料</p>
   </div>
-</div>
+</section>
 
-<!-- PAIN POINTS -->
-<section>
+<!-- PAIN -->
+<section class="section-pain">
   <div class="container">
-    <div class="section-label">Problem</div>
-    <h2 class="section-title">こんな悩みありませんか？</h2>
+    <h2 class="section-title">こんな悩み、ありませんか？</h2>
     <ul class="pain-list">
-      <li>古物台帳、Excelで手入力が面倒</li>
+      <li>古物台帳、Excelで手入力が面倒くさい</li>
       <li>仕入れのたびに手数料・送料を電卓で計算している</li>
-      <li>在庫が増えてきて何がどこにあるか分からない</li>
+      <li>在庫が増えてきて、何がどこにあるか分からなくなってきた</li>
     </ul>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section>
+<section class="section-features">
   <div class="container">
-    <div class="section-label">Features</div>
-    <h2 class="section-title">機能紹介</h2>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">🧮</div>
-        <div class="card-name">仕入れボーダーライン計算機</div>
-        <div class="card-desc">手数料・送料を設定しておけば、利益が出る仕入れ上限価格を即計算。</div>
+    <h2 class="section-title">できること</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧮</div>
+        <div class="feature-name">仕入れボーダーライン計算機</div>
+        <p class="feature-desc">売値・手数料・送料を入力すると仕入れ上限を即計算。現場で迷わない。</p>
       </div>
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <div class="card-name">古物台帳（法定様式・印刷対応）</div>
-        <div class="card-desc">仕入れ登録と同時に台帳記録。法定様式でそのまま印刷できます。</div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-name">古物台帳（法定様式対応）</div>
+        <p class="feature-desc">仕入れ登録と同時に台帳へ自動記録。印刷・CSV出力に対応。</p>
       </div>
-      <div class="card">
-        <div class="card-icon">📦</div>
-        <div class="card-name">在庫管理（値下げアラート付き）</div>
-        <div class="card-desc">出品中の商品を一覧管理。設定日数を超えると自動でアラート表示。</div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <div class="feature-name">在庫管理</div>
+        <p class="feature-desc">出品中の商品を一覧管理。設定日数を超えると値下げアラートを表示。</p>
       </div>
-      <div class="card">
-        <div class="card-icon">📝</div>
-        <div class="card-name">出品文生成</div>
-        <div class="card-desc">ブランド・状態・型番から出品文のたたき台を自動生成。</div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <div class="feature-name">出品文生成</div>
+        <p class="feature-desc">ブランド・状態・型番を入力するだけで出品文のたたき台を自動生成。</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- STRENGTHS -->
-<section>
+<section class="section-strengths">
   <div class="container">
-    <div class="section-label">Why furyo-tool</div>
-    <h2 class="section-title">このツールの特徴</h2>
-    <ul class="feature-list">
-      <li>ローカル動作（データがクラウドに出ない・月額不要）</li>
-      <li>古物台帳と仕入れ登録が同時に記録される</li>
-      <li>ブランド品せどり専用設計・80ブランド以上を収録</li>
-    </ul>
+    <h2 class="section-title">選ばれる理由</h2>
+    <div class="strength-list">
+      <div class="strength-card">
+        <div class="strength-name">データがクラウドに出ない</div>
+        <p class="strength-desc">ローカル動作のため、顧客の個人情報や仕入れ情報が外部サーバーに送られません。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-name">古物台帳の記帳義務をカバー</div>
+        <p class="strength-desc">仕入れ登録と同時に台帳へ記録。法定様式での印刷にも対応しています。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-name">ブランド品せどり専用設計</div>
+        <p class="strength-desc">80以上のブランドを収録。手数料・送料のプリセットも自由にカスタマイズできます。</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- MONITOR CTA -->
-<section>
+<section class="section-monitor">
   <div class="container">
-    <div class="monitor-box">
-      <div class="monitor-tag">MONITOR WANTED</div>
-      <h3>現在モニターを<br>5名限定で募集しています</h3>
-      <p>
-        無料でご利用いただく代わりに、<br>
-        使い心地のフィードバックをお願いします。<br>
-        先着順のため、お早めにどうぞ。
-      </p>
-      <a class="btn-x" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.261 5.632 5.903-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        X（Twitter）でモニターに応募する
-      </a>
-    </div>
+    <p class="monitor-label">MONITOR WANTED</p>
+    <h2 class="monitor-title">モニターを5名限定で<br>募集しています</h2>
+    <p class="monitor-desc">無料でご利用いただく代わりに、使い心地のフィードバックをお願いします。いただいたフィードバックはツールの改善に活かします。</p>
+    <a class="btn-monitor" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">X（Twitter）でモニターに応募する</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <p>© 2025 furyo-tool &nbsp;|&nbsp; X: <a href="https://x.com/ruta_sedori" target="_blank" rel="noopener">@ruta_sedori</a></p>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 kobucho</span>
+    <a class="footer-x" href="https://x.com/ruta_sedori" target="_blank" rel="noopener">@ruta_sedori</a>
   </div>
 </footer>
 
